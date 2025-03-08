@@ -1,6 +1,4 @@
-// Import required packages
 import express from "express";
-import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
@@ -10,35 +8,34 @@ import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js";
 
-// Initialize app
 const App = express();
 const port = process.env.PORT || 7777;
 
-// Connect to databases
 connectDB();
 connectCloudinary();
 
-// Middleware
 App.use(express.json());
 App.use(express.urlencoded({ extended: true }));
 
-// CORS Configuration
-App.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://triftopia-admin.vercel.app", // Frontend URL
-      "https://triftopia-c.vercel.app", // Backend URL (if applicable)
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
+// 🌐 Manually Add CORS Headers
+App.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://triftopia-admin.vercel.app"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
 
-// Preflight Request Handling for CORS
-App.options("*", cors());
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 // API Routes
 App.use("/api/user", userRouter);
@@ -46,11 +43,12 @@ App.use("/api/product", productRouter);
 App.use("/api/cart", CartRouter);
 App.use("/api/order", OrderRouter);
 
-// Test Routes
+// Test Route
 App.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
+// Protected Route
 App.get("/protected", AuthUser, (req, res) => {
   console.log("User ID in Route Handler:", req.userId);
   res.json({ success: true, userId: req.userId });
