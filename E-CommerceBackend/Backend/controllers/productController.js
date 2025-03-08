@@ -11,7 +11,6 @@ const addProduct = async (req, res) => {
       subCategory,
       bestseller,
       trusted,
-      date,
       originyear,
       brand,
       color,
