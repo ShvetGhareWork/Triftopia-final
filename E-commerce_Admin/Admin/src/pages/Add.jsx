@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Upload from "/upload.png";
+import Upload from "/upload.png";
 import axios from "axios";
 import { backEndurl } from "../App";
 import { toast } from "react-toastify";
