@@ -10,7 +10,7 @@ const ProductList = ({ token }) => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        backEndurl + "/api/product/list-product",
+        `${backEndurl}/api/product/list-product`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
