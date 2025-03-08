@@ -1,3 +1,4 @@
+// Import required packages
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
@@ -9,18 +10,19 @@ import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js";
 
-// App config
+// Initialize app
 const App = express();
 const port = process.env.PORT || 7777;
+
+// Connect to databases
 connectDB();
 connectCloudinary();
-// const { userId } = req.body;
 
-// Middlewares
+// Middleware
 App.use(express.json());
 App.use(express.urlencoded({ extended: true }));
 
-// CORS configuration
+// CORS Configuration
 App.use(
   cors({
     origin: [
@@ -35,22 +37,26 @@ App.use(
   })
 );
 
-// API endpoints
+// Preflight Request Handling for CORS
+App.options("*", cors());
+
+// API Routes
 App.use("/api/user", userRouter);
 App.use("/api/product", productRouter);
 App.use("/api/cart", CartRouter);
 App.use("/api/order", OrderRouter);
 
-// Verify if working
+// Test Routes
 App.get("/", (req, res) => {
   res.send("API WORKING");
 });
+
 App.get("/protected", AuthUser, (req, res) => {
   console.log("User ID in Route Handler:", req.userId);
   res.json({ success: true, userId: req.userId });
 });
 
-// Start the server
+// Start Server
 App.listen(port, () => {
   console.log(`Server started on PORT: ${port}`);
 });
