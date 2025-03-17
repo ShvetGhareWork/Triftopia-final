@@ -139,3 +139,8 @@ App.get("/protected", AuthUser, (req, res) => {
 App.listen(port, () => {
   console.log(`Server started on PORT: ${port}`);
 });
+
+// Serve React app for any unknown routes
+App.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
