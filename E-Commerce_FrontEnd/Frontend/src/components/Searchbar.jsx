@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Search_png from "/Search.svg";
-import Mic from "/mic.png"; // Add a microphone icon
+import Mic from "/mic.png";
 import X from "/x.svg";
 import { useLocation } from "react-router-dom";
 
-const Searchbar = () => {
+const Searchbar = ({ suggestions = [] }) => {
   const { Search, SetSearch, SetShowSearch, ShowSearch } =
     useContext(ShopContext);
   const [Visible, SetVisible] = useState(false);
@@ -37,13 +37,8 @@ const Searchbar = () => {
       SetIsListening(false);
     };
 
-    recognition.onerror = () => {
-      SetIsListening(false);
-    };
-
-    recognition.onend = () => {
-      SetIsListening(false);
-    };
+    recognition.onerror = () => SetIsListening(false);
+    recognition.onend = () => SetIsListening(false);
   };
 
   return ShowSearch && Visible ? (

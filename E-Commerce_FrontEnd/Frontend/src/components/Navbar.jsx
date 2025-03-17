@@ -96,7 +96,7 @@ const Navbar = () => {
                 </p>
                 <hr className="border-gray-700" />
                 <p
-                  onClick={() => navigate("/orders")}
+                  onClick={() => navigate("/orders")} //navigation
                   className="cursor-pointer hover:text-black p-2 rounded"
                 >
                   Orders
