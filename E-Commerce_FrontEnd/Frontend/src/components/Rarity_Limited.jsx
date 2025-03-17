@@ -16,7 +16,7 @@ const Rarity = () => {
   useEffect(() => {
     const Limited_Common = products.filter(
       (item) =>
-        item.category === "Limited-Edition" && item.rarity_level === "Common"
+        item.category === "Limited-Edition" && item.rarityLevel === "Common"
     );
     SetCommon(Limited_Common.slice(0, 5));
   }, [products]);
@@ -24,7 +24,7 @@ const Rarity = () => {
   useEffect(() => {
     const Limited_Rare = products.filter(
       (item) =>
-        item.category === "Limited-Edition" && item.rarity_level === "Rare"
+        item.category === "Limited-Edition" && item.rarityLevel === "Rare"
     );
     SetRare(Limited_Rare.slice(0, 5));
   }, [products]);
@@ -32,8 +32,7 @@ const Rarity = () => {
   useEffect(() => {
     const Limited_Ultra_Rare = products.filter(
       (item) =>
-        item.category === "Limited-Edition" &&
-        item.rarity_level === "Ultra-Rare"
+        item.category === "Limited-Edition" && item.rarityLevel === "Ultra-Rare"
     );
     SetUltraRare(Limited_Ultra_Rare.slice(0, 5));
   }, [products]);

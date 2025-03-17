@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Search_png from "/Search.svg";
+import Mic from "/mic.png"; // Add a microphone icon
 import X from "/x.svg";
 import { useLocation } from "react-router-dom";
 
@@ -8,6 +9,7 @@ const Searchbar = () => {
   const { Search, SetSearch, SetShowSearch, ShowSearch } =
     useContext(ShopContext);
   const [Visible, SetVisible] = useState(false);
+  const [IsListening, SetIsListening] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,6 +19,32 @@ const Searchbar = () => {
       SetVisible(false);
     }
   }, [location]);
+
+  // Voice Recognition Logic
+  const startListening = () => {
+    const recognition = new (window.SpeechRecognition ||
+      window.webkitSpeechRecognition)();
+    recognition.lang = "en-US";
+    recognition.start();
+    SetIsListening(true);
+
+    recognition.onresult = (event) => {
+      let transcript = event.results[0][0].transcript;
+      if (transcript.endsWith(".")) {
+        transcript = transcript.slice(0, -1);
+      }
+      SetSearch(transcript);
+      SetIsListening(false);
+    };
+
+    recognition.onerror = () => {
+      SetIsListening(false);
+    };
+
+    recognition.onend = () => {
+      SetIsListening(false);
+    };
+  };
 
   return ShowSearch && Visible ? (
     <div className="border-t border-b bg-gray-50 text-center">
@@ -28,13 +56,20 @@ const Searchbar = () => {
           placeholder="Search..."
           className="flex-1 outline-none bg-inherit text-sm"
         />
-        <img className="w-4" src={Search_png} alt="" />
+        <img
+          className={`w-5 ml-2 cursor-pointer ${
+            IsListening ? "opacity-50" : ""
+          }`}
+          src={Mic}
+          alt="Voice Search"
+          onClick={startListening}
+        />
       </div>
       <img
         src={X}
         className="w-3 inline cursor-pointer"
         onClick={() => SetShowSearch(false)}
-        alt=""
+        alt="Close"
       />
     </div>
   ) : null;
