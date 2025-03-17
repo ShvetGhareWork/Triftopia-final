@@ -23,7 +23,11 @@ App.use(express.urlencoded({ extended: true }));
 // CORS configuration
 App.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"], // Allow both ports if needed
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://triftopia-c.vercel.app/api/product/list-product",
+    ], // Allow both ports if needed
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
