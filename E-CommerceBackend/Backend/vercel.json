@@ -17,11 +17,11 @@
   ],
   "headers": [
     {
-      "source": "/api/(.*)", // Apply headers to all API routes (e.g., /api/product/list-product)
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://triftopia-frontend.vercel.app" // Your frontend URL
+          "value": "https://triftopia-frontend.vercel.app"
         },
         {
           "key": "Access-Control-Allow-Methods",
