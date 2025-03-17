@@ -14,15 +14,12 @@ import LEProduct from "./pages/LEProduct";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Onopen />} />
-        <Route path="*" element={<NotFound />} />
-
         <Route path="/home" element={<Home />} />
         <Route
           path="/limited-access/limited-collection"

@@ -88,6 +88,7 @@ const listProduct = async (req, res) => {
     }
 
     res.status(200).json({ success: true, products });
+    console.log(products);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
