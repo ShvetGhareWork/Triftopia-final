@@ -17,7 +17,7 @@ productRouter.post(
   addProduct
 );
 productRouter.delete("/remove-product", adminAuth, removeProduct);
-productRouter.get("/list-product", adminAuth, listProduct); //add admin authentication but token to be passed to the frontend
+productRouter.get("/list-product", listProduct); //add admin authentication but token to be passed to the frontend
 productRouter.get("/product-info", singleProductInfo);
 
 export default productRouter;
