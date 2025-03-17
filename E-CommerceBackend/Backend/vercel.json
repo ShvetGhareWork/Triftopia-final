@@ -24,6 +24,10 @@
           "value": "https://triftopia-frontend.vercel.app"
         },
         {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://triftopia-admin.vercel.app"
+        },
+        {
           "key": "Access-Control-Allow-Methods",
           "value": "GET, POST, PUT, DELETE, OPTIONS"
         },
