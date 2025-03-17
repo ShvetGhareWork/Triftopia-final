@@ -5,7 +5,7 @@
       "src": "server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFlies": ["dist/**"]
+        "includeFiles": ["dist/**"]
       }
     }
   ],
@@ -17,11 +17,11 @@
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/(.*)", // Apply headers to all API routes (e.g., /api/product/list-product)
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://triftopia-frontend.vercel.app"
+          "value": "https://triftopia-frontend.vercel.app" // Your frontend URL
         },
         {
           "key": "Access-Control-Allow-Methods",
