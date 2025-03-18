@@ -53,7 +53,22 @@ App.use("/api/order", OrderRouter);
 // Verify if working
 App.get("/", (req, res) => {
   res.send("API WORKING");
+
+  try {
+    // Attempt to fetch a single document to verify the connection
+    const product = productModel.findOne();
+
+    if (product) {
+      res.status(200).send("Database Connected Successfully!");
+    } else {
+      res.status(200).send("Database Connected, but no products found.");
+    }
+  } catch (error) {
+    console.error("Database Connection Error:", error.message);
+    res.status(500).send("Database Connection Failed!");
+  }
 });
+
 App.get("/protected", AuthUser, (req, res) => {
   console.log("User ID in Route Handler:", req.userId);
   res.json({ success: true, userId: req.userId });
