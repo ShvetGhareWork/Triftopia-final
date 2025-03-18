@@ -60,15 +60,6 @@ App.get("/protected", AuthUser, (req, res) => {
   res.json({ success: true, userId: req.userId });
 });
 
-App.get("/api/product/list-product", async (req, res) => {
-  try {
-    const Product = await products.find().limit(50); // Limit the response
-    res.json(Product);
-  } catch (error) {
-    res.status(500).send({ message: error.message });
-  }
-});
-
 // Start the server
 App.listen(port, () => {
   console.log("Server started on PORT: ${port}");
