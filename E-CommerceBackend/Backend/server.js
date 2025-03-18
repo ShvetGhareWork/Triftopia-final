@@ -8,7 +8,6 @@ import productRouter from "./routes/productRoute.js";
 import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js";
-import productModel from "./models/productModel.js";
 
 // App config
 const App = express();
@@ -53,21 +52,7 @@ App.use("/api/order", OrderRouter);
 
 // Verify if working
 App.get("/", (req, res) => {
-  res.send("API WORKIN");
-
-  try {
-    // Attempt to fetch a single document to verify the connection
-    const product = productModel.findOne();
-
-    if (product) {
-      res.status(200).send("Database Connected Successfully!");
-    } else {
-      res.status(200).send("Database Connected, but no products found.");
-    }
-  } catch (error) {
-    console.error("Database Connection Error:", error.message);
-    res.status(500).send("Database Connection Failed!");
-  }
+  res.send("API WORKING");
 });
 
 App.get("/protected", AuthUser, (req, res) => {

@@ -72,14 +72,14 @@ const addProduct = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: "Not Going" });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
 // Function to list product
 const listProduct = async (req, res) => {
   try {
-    const products = await productModel.find({}).limit(50); // Limits to 50 products
+    const products = await productModel.find({});
 
     if (!products.length) {
       return res
