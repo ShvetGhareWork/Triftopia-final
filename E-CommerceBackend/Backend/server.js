@@ -52,7 +52,7 @@ App.use("/api/order", OrderRouter);
 
 // Verify if working
 App.get("/", (req, res) => {
-  res.send("API WORKING");
+  res.send("API WORKIN");
 
   try {
     // Attempt to fetch a single document to verify the connection
