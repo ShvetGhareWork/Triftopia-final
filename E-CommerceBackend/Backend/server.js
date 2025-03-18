@@ -26,9 +26,6 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://triftopia-frontend.vercel.app",
   "https://triftopia-admin.vercel.app",
-  "https://triftopia-admin.vercel.app/list-product",
-  "https://triftopia-admin.vercel.app/add-product",
-  "https://triftopia-admin.vercel.app/orders",
 ];
 
 App.use(

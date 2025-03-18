@@ -34,6 +34,7 @@ const ShopContextProvider = (props) => {
       );
       if (response.data.success) {
         setProduct(response.data.products);
+        console.log(response.data.products);
         // console.log(response.data.products);
       } else {
         toast.error(response.data.message);
