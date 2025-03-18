@@ -8,6 +8,7 @@ import productRouter from "./routes/productRoute.js";
 import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js";
+import productModel from "./models/productModel.js";
 
 // App config
 const App = express();
