@@ -26,6 +26,9 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://triftopia-frontend.vercel.app",
   "https://triftopia-admin.vercel.app",
+  "http://localhost:5173/list-product",
+  "https://triftopia-frontend.vercel.app",
+  "https://triftopia-admin.vercel.app",
 ];
 
 App.use(
@@ -57,6 +60,15 @@ App.get("/", (req, res) => {
 App.get("/protected", AuthUser, (req, res) => {
   console.log("User ID in Route Handler:", req.userId);
   res.json({ success: true, userId: req.userId });
+});
+
+App.get("/api/product/list-product", async (req, res) => {
+  try {
+    const Product = await products.find().limit(50); // Limit the response
+    res.json(Product);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
 });
 
 // Start the server

@@ -79,7 +79,7 @@ const addProduct = async (req, res) => {
 // Function to list product
 const listProduct = async (req, res) => {
   try {
-    const products = await productModel.find({});
+    const products = await productModel.find({}).limit(50); // Limits to 50 products
 
     if (!products.length) {
       return res
