@@ -1,5 +1,5 @@
 import React from "react";
-import Piechart from "../components/Piechart";
+import Piechart from "../components/Piechart.jsx";
 import ScatterGraph from "../components/ScatterGraph";
 import PriceChart from "../components/Pricechart";
 import Sales from "../components/Sales";
