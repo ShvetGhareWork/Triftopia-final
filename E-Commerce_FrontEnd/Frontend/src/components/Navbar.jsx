@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import Search from "/Search.svg";
 import user from "/user.png";
@@ -8,10 +8,18 @@ import Searchbar from "./Searchbar";
 import { ShopContext } from "../context/ShopContext";
 import { toast } from "react-toastify";
 import { Menu, X } from "lucide-react"; // Import icons for the mobile menu
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Navbar = () => {
-  const { SetShowSearch, GetcartCount, navigate, token, setToken, CartItems } =
-    useContext(ShopContext);
+  const {
+    SetShowSearch,
+    GetcartCount,
+    navigate,
+    token,
+    setToken,
+    CartItems,
+  } = useContext(ShopContext);
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,11 +31,15 @@ const Navbar = () => {
     CartItems({});
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  }, []);
+
   return (
     <>
       <div className="flex items-center justify-between px-5 md:px-10 py-5 font-bold relative">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center">
+        <NavLink data-aos="fade-down" to="/" className="flex items-center">
           <img
             className="h-10 md:h-12 w-auto"
             src={Logo}
@@ -49,6 +61,7 @@ const Navbar = () => {
           {["home", "limited-access", "antique-access", "contact"].map(
             (route) => (
               <NavLink
+                data-aos="fade-down"
                 key={route}
                 to={`/${route}`}
                 className={({ isActive }) =>
@@ -73,7 +86,7 @@ const Navbar = () => {
         </ul>
 
         {/* Icons Section */}
-        <div className="hidden md:flex items-center gap-6">
+        <div data-aos="fade-down" className="hidden md:flex items-center gap-6">
           <img
             onClick={() => SetShowSearch(true)}
             src={Search}
@@ -91,7 +104,10 @@ const Navbar = () => {
             {/* Dropdown */}
             {token && (
               <div className="hidden group-hover:block absolute right-0 bg-white text-gray-400 rounded-2xl shadow-lg py-3 px-4 w-40">
-                <p className="cursor-pointer hover:text-black p-2 rounded">
+                <p
+                  className="cursor-pointer hover:text-black p-2 rounded"
+                  onClick={() => navigate("/profile")} //navigation
+                >
                   My Profile
                 </p>
                 <hr className="border-gray-700" />

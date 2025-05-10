@@ -51,7 +51,7 @@ const LEProduct = () => {
             </div>
             {/* Main Image */}
             <div
-              className="flex-1 sticky top-0 z-10 hover:scale-110 hover:translate-x-10- transition duration-500"
+              className="flex-1 sticky top-0 z-10 hover:scale-110 hover:translate-x-10 transition duration-500"
               style={{ top: "10px" }}
             >
               <img src={Image} className="rounded-lg" alt="Product" />

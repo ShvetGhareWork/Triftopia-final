@@ -4,9 +4,11 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const { backEndURL, token, currency } = useContext(ShopContext);
+  const navigate = useNavigate();
 
   const [orderData, setOrderData] = useState([]);
   // Get the current date and time
@@ -90,16 +92,21 @@ const Orders = () => {
                     <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
                     <p className="text-sm md:text-base">{item.status}</p>
                   </div>
-                  <button
-                    onClick={LoadOrderData}
-                    className="border mr-5 px-4 py-2 text-sm font font-medium rounded-sm"
-                  >
-                    Track Order
-                  </button>
                 </div>
               </div>
             );
           })}
+        </div>
+        <div className=" flex justify-end items-center w-auto p-3 h-auto">
+          <button
+            onClick={() => {
+              LoadOrderData();
+              navigate("/track-order");
+            }}
+            className="border mr-5 mt-10 text-white bg-black px-4 py-2 text-sm font font-medium"
+          >
+            Track Orders
+          </button>
         </div>
       </div>
       <Footer />

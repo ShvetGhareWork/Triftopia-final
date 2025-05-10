@@ -14,10 +14,14 @@ import LEProduct from "./pages/LEProduct";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Chatbot from "./components/Chatbot";
+import TrackOrder from "./pages/TrackOrder";
 
 function App() {
   return (
     <>
+      <Chatbot />
       <Routes>
         <Route path="/" element={<Onopen />} />
         <Route path="/home" element={<Home />} />
@@ -34,7 +38,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/orders" element={<Orders />} /> {/*Navigation*/}
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/place-order" element={<PlaceOrder />} />
+        <Route path="/track-order" element={<TrackOrder />} />
         <Route path="/product/:productId" element={<LEProduct />} />
         <Route path="/limited-access" element={<LimitedAccess />} />
         <Route path="/antique-access" element={<AntiqueAccess />} />

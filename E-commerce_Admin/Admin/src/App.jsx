@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar.jsx";
 import Add from "./pages/Add.jsx";
 import List from "./pages/List.jsx";
 import Orders from "./pages/Orders.jsx";
+import Analysis from "./pages/Analysis.jsx";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login.jsx";
 import { ToastContainer } from "react-toastify";
@@ -40,6 +41,7 @@ const App = () => {
                 <Route path="/add-product" element={<Add token={token} />} />
                 <Route path="/list-product" element={<List token={token} />} />
                 <Route path="/orders" element={<Orders token={token} />} />
+                <Route path="/analysis" element={<Analysis token={token} />} />
               </Routes>
             </div>
           </div>
