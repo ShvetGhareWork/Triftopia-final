@@ -26,7 +26,8 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://triftopia-frontend.vercel.app",
   "https://triftopia-admin.vercel.app",
-  "https://triftopia-frontend-qhuwkk9z0-shvetghareworks-projects.vercel.app", // 👈 add your frontend project origin here
+  "https://triftopia-frontend-qhuwkk9z0-shvetghareworks-projects.vercel.app",
+  "https://triftopia-admin-hgz4e6aol-shvetghareworks-projects.vercel.app", // 👈 added this new admin deployment
 ];
 
 App.use(
