@@ -26,12 +26,12 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://triftopia-frontend.vercel.app",
   "https://triftopia-admin.vercel.app",
+  "https://triftopia-frontend-qhuwkk9z0-shvetghareworks-projects.vercel.app", // 👈 add your frontend project origin here
 ];
 
 App.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
