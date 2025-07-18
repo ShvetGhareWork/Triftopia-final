@@ -8,7 +8,6 @@ import productRouter from "./routes/productRoute.js";
 import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js"; // Authentication middleware
-import helmet from "helmet"; // For setting security-related HTTP headers
 import rateLimit from "express-rate-limit"; // For rate limiting requests
 
 // App config
@@ -20,7 +19,6 @@ App.use(express.json()); // Parses incoming JSON requests
 App.use(express.urlencoded({ extended: true })); // Parses incoming URL-encoded requests
 
 // Security Middlewares
-App.use(helmet()); // Apply Helmet middleware for security headers
 
 // Rate Limiting to prevent brute-force attacks and DoS
 const apiLimiter = rateLimit({
