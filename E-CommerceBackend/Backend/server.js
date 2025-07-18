@@ -8,7 +8,6 @@ import productRouter from "./routes/productRoute.js";
 import CartRouter from "./routes/CartRoute.js";
 import OrderRouter from "./routes/OrderRoute.js";
 import AuthUser from "./middleware/Auth.js"; // Authentication middleware
-import rateLimit from "express-rate-limit"; // For rate limiting requests
 
 // App config
 const App = express();
@@ -19,16 +18,6 @@ App.use(express.json()); // Parses incoming JSON requests
 App.use(express.urlencoded({ extended: true })); // Parses incoming URL-encoded requests
 
 // Security Middlewares
-
-// Rate Limiting to prevent brute-force attacks and DoS
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again after 15 minutes",
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-});
-App.use(apiLimiter); // Apply rate limiting to all requests
 
 // CORS configuration
 // Define allowed origins for your frontend applications
